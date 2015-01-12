@@ -18,7 +18,7 @@
 #include "apr_strings.h"
 #include "apr_uuid.h"
 #include "apr_base64.h"
-#ifndef APACHE22
+#if !defined(APACHE22) && !defined(APACHE24)
 #include "pcreposix.h"
 #else
 #include "ap22_compat.h"
@@ -1302,7 +1302,7 @@ get_guest_uid(request_rec *r, auth_tkt_dir_conf *conf)
   int guest_user_length;
   apr_uuid_t *uuid;
   char *uuid_str, *uuid_length_str;
-#ifndef APACHE22
+#if !defined(APACHE22) && !defined(APACHE24)
   regex_t *uuid_regex;
   regmatch_t regm[UUID_SUBS];
 #else
